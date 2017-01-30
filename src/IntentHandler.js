@@ -17,9 +17,7 @@ var morningGreeting = getMorningGreetingFromCurrentTime();
 }
 
 IntentHandler.prototype.welcomeIntent = function(intent, session, responseHandler) {
-	var greeting = this.welcomeResponse();
-
-	responseHandler(greeting.message, true, greeting.reprompt);
+	responseHandler("Hello this is linkedin", false);
 }
 
 // Helper Functions
