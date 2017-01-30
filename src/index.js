@@ -48,6 +48,10 @@ AlfredHandler.prototype.intentHandlers = {
         intentHandler.welcomeIntent(intent, session, responseHandler);
     },
 
+    "NewsIntent": function(intent, session, responseHandler) {
+        intentHandler.newsIntent(intent, session, responseHandler);
+    },
+
 	"AMAZON.HelpIntent": function (intent, session, response) {
         response.tell("Help");
     },

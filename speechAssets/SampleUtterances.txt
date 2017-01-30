@@ -2,3 +2,8 @@ HelloIntent good morning
 HelloIntent good evening
 HelloIntent good afternoon
 HelloIntent hello
+
+NewsIntent news
+NewsIntent what's the news
+NewsIntent for the news
+NewsIntent about the news

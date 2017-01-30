@@ -20,6 +20,10 @@ IntentHandler.prototype.welcomeIntent = function(intent, session, responseHandle
 	responseHandler("Hello this is linkedin", false);
 }
 
+IntentHandler.prototype.newsIntent = function(intent, session, responseHandler) {
+	responseHandler("Starbucks serves up virtual ordering via app. Say goodbye to messing up your name on a paper cup. Would you like to learn more?", false);
+}
+
 // Helper Functions
 function getMorningGreetingFromCurrentTime() {
 	var date = new Date();
