@@ -21,7 +21,7 @@ IntentHandler.prototype.welcomeIntent = function(intent, session, responseHandle
 }
 
 IntentHandler.prototype.newsIntent = function(intent, session, responseHandler) {
-	responseHandler("Starbucks serves up virtual ordering via app. Say goodbye to messing up your name on a paper cup. Would you like to learn more?", false);
+	responseHandler("Starbucks serves up virtual ordering via app. Say goodbye to messing up your name on a paper cup. Would you like to learn more?", true, "I'm sorry what did you say?");
 }
 
 // Helper Functions
