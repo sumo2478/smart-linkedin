@@ -1,31 +1,68 @@
-'use strict';
+/*
+Alfred Main Code
+*/
 
-// Boilerplate setup
-let ApiAiAssistant = require('actions-on-google').ApiAiAssistant;
-let express = require('express');
-let bodyParser = require('body-parser');
-let app = express();
-app.set('port', (process.env.PORT || 8080));
-app.use(bodyParser.json({type: 'application/json'}));
+// TODO: Change this
+var APP_ID = 'amzn1.ask.skill.dad5b141-60f0-4c33-bffa-c584fd2702da';
 
-// Create an instance of ApiAiAssistant
-app.post('/', function (request, response) {
-  const assistant = new ApiAiAssistant(
-    {request: request, response: response});
+/**
+ * The AlexaSkill prototype and helper functions
+ */
+var AlexaSkill = require('./AlexaSkill');
+var Intent = require('./IntentHandler');
 
-// Create functions to handle requests here
-const WELCOME_INTENT = 'input.welcome';  // the action name from the API.AI intent
-function welcomeIntent (assistant) {
-  assistant.ask('Here are the top stories from Linked in news');
-}
+var intentHandler = new Intent();
 
-let actionMap = new Map();
-actionMap.set(WELCOME_INTENT, welcomeIntent);
-assistant.handleRequest(actionMap);
-});
+var AlfredHandler = function() {
+	AlexaSkill.call(this, APP_ID);
+};
 
-// Start the server
-let server = app.listen(app.get('port'), function () {
-  console.log('App listening on port %s', server.address().port);
-  console.log('Press Ctrl+C to quit.');
-});
+// Extend AlexaSkill
+AlfredHandler.prototype = Object.create(AlexaSkill.prototype);
+AlfredHandler.prototype.constructor = AlfredHandler;
+
+// ----------------------- Override AlexaSkill request and intent handlers -----------------------
+
+AlfredHandler.prototype.eventHandlers.onSessionStarted = function (sessionStartedRequest, session) {
+    console.log("onSessionStarted requestId: " + sessionStartedRequest.requestId
+        + ", sessionId: " + session.sessionId);
+};
+
+AlfredHandler.prototype.eventHandlers.onLaunch = function (launchRequest, session, response) {
+    console.log("onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId);
+
+    var greeting = intentHandler.welcomeResponse();
+    response.ask(greeting.message, greeting.reprompt);
+};
+
+AlfredHandler.prototype.eventHandlers.onSessionEnded = function (sessionEndedRequest, session) {
+    console.log("onSessionEnded requestId: " + sessionEndedRequest.requestId
+        + ", sessionId: " + session.sessionId);
+};
+
+/**
+ * override intentHandlers to map intent handling functions.
+ */
+AlfredHandler.prototype.intentHandlers = {
+    "HelloIntent": function(intent, session, responseHandler) {
+        intentHandler.welcomeIntent(intent, session, responseHandler);
+    },
+
+	"AMAZON.HelpIntent": function (intent, session, response) {
+        response.tell("Help");
+    },
+
+    "AMAZON.StopIntent": function (intent, session, responseHandler) {
+        intentHandler.goodbyeIntent(intent, session, responseHandler);  
+    },
+
+    "AMAZON.CancelIntent": function (intent, session, responseHandler) {
+        intentHandler.goodbyeIntent(intent, session, responseHandler);  
+    }
+};
+
+// Create the handler that responds to the Alexa Request.
+exports.handler = function (event, context) {
+    var alfredHandler = new AlfredHandler();
+    alfredHandler.execute(event, context);
+};
