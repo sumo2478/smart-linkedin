@@ -1,0 +1,4 @@
+HelloIntent good morning
+HelloIntent good evening
+HelloIntent good afternoon
+HelloIntent hello
