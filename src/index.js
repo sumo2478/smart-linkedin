@@ -52,6 +52,26 @@ AlfredHandler.prototype.intentHandlers = {
         intentHandler.newsIntent(intent, session, responseHandler);
     },
 
+    "MoreNewsIntentOne": function(intent, session, responseHandler) {    	
+    	console.log("Entered index news 1");
+        intentHandler.moreNewsIntentOne(intent, session, responseHandler);
+    },
+
+	"MoreNewsIntentTwo": function(intent, session, responseHandler) {    	
+    	console.log("Entered index news 2");
+        intentHandler.moreNewsIntentTwo(intent, session, responseHandler);
+    },
+
+	"MoreNewsIntentThree": function(intent, session, responseHandler) {    	
+    	console.log("Entered index news 3");
+        intentHandler.moreNewsIntentThree(intent, session, responseHandler);
+    },
+
+    "TestQuestion": function(intent, session, responseHandler) {    	
+    	console.log("TestQuestion intent");
+        intentHandler.testQuestion(intent, session, responseHandler);
+    },
+
 	"AMAZON.HelpIntent": function (intent, session, response) {
         response.tell("Help");
     },

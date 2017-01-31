@@ -3,7 +3,30 @@ HelloIntent good evening
 HelloIntent good afternoon
 HelloIntent hello
 
+TestQuestion test question
+
 NewsIntent news
 NewsIntent what's the news
 NewsIntent for the news
 NewsIntent about the news
+
+MoreNewsIntentOne tell me more about the first one
+MoreNewsIntentOne yeah the first one
+MoreNewsIntentOne yes the first one
+MoreNewsIntentOne sure how about the first one
+
+MoreNewsIntentTwo tell me more about the second one
+MoreNewsIntentTwo yeah the second one
+MoreNewsIntentTwo yes the second one
+MoreNewsIntentTwo sure how about the second one
+
+MoreNewsIntentThree tell me more about the third one
+MoreNewsIntentThree yeah the third one
+MoreNewsIntentThree yes the third one
+MoreNewsIntentThree sure how about the third one
+
+AMAZON.StopIntent no
+AMAZON.StopIntent no that is enough
+AMAZON.StopIntent no that's enough
+AMAZON.StopIntent no I am good
+AMAZON.StopIntent no this was good
