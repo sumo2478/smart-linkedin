@@ -25,23 +25,39 @@ IntentHandler.prototype.goodbyeIntent = function(intent, session, responseHandle
 }
 
 IntentHandler.prototype.newsIntent = function(intent, session, responseHandler) {
+	session.attributes.isNews = true;
 	responseHandler("Here are the top stories from linkedin: First Story - Immigration ban fallout and latest reactions to President Trump's executive action on immigration. Second Story - Why are people deleting Uber. It has to do with Trump's immigration ban. Third Story - Snapchat selects NYSE for its IPO. The IPO will likely happen in March. Would you like to know more about any of these stories?", true, "I'm sorry what did you say?");
 	/*responseHandler("Would you like to know more about any of these?", true, "I'm sorry what did you say?");*/
 }
 
 IntentHandler.prototype.moreNewsIntentOne = function(intent, session, responseHandler) {
-	console.log("More News intent 1 handler");
-	responseHandler("Ok. Questions, confusion and protests continue to build in wake of President Trump's executive order on immigration. Starbucks responded to Trump's immigration ban by pledging to hire 10000 immigrants worldwide. Do you want to know more about any other story?", true, "I'm sorry what did you say?");
+	if (session.attributes.isNews) {
+		console.log("More News intent 1 handler");
+		responseHandler("Ok. Questions, confusion and protests continue to build in wake of President Trump's executive order on immigration. Starbucks responded to Trump's immigration ban by pledging to hire 10000 immigrants worldwide. Do you want to know more about any other story?", true, "I'm sorry what did you say?");
+	} else {
+		console.log("else More News intent 2 handler");
+		responseHandler("I am not sure about the context for this.", false, "I'm sorry what did you say?");		
+	}
 }
 
 IntentHandler.prototype.moreNewsIntentTwo = function(intent, session, responseHandler) {
-	console.log("More News intent 2 handler");
-	responseHandler("Ok. After hashtag delete uber got popular the CEO pledged 3 million dollars for drivers affected by immigration ban. Do you want to know more about any other story?", true, "I'm sorry what did you say?");
+	if (session.attributes.isNews) {
+		console.log("More News intent 2 handler");
+		responseHandler("Ok. After hashtag delete uber got popular the CEO pledged 3 million dollars for drivers affected by immigration ban. Do you want to know more about any other story?", true, "I'm sorry what did you say?");
+	} else {
+		console.log("else More News intent 2 handler");
+		responseHandler("I am not sure about the context for this.", false, "I'm sorry what did you say?");		
+	}
 }
 
 IntentHandler.prototype.moreNewsIntentThree = function(intent, session, responseHandler) {
-	console.log("More News intent 3 handler");
-	responseHandler("Ok. Expect plenty of headlines about upcoming IPO of Snapchat. But it's business technology companies, not consumer ones that have been leading the tech IPO revival. Latest valuation as of 24th January is breathtaking 3.7 billion dollars. Do you want to know more about any other story?", true, "I'm sorry what did you say?");
+	if (session.attributes.isNews) {
+		console.log("if More News intent 3 handler");
+		responseHandler("Ok. Expect plenty of headlines about upcoming IPO of Snapchat. But it's business technology companies, not consumer ones that have been leading the tech IPO revival. Latest valuation as of 24th January is breathtaking 3.7 billion dollars. Do you want to know more about any other story?", true, "I'm sorry what did you say?");
+	} else {
+		console.log("else More News intent 3 handler");
+		responseHandler("I am not sure about the context for this.", false, "I'm sorry what did you say?");		
+	}
 }
 
 IntentHandler.prototype.testQuestion = function(intent, session, responseHandler) {
