@@ -72,6 +72,10 @@ AlfredHandler.prototype.intentHandlers = {
         intentHandler.testQuestion(intent, session, responseHandler);
     },
 
+    "SendToPhone": function(intent, session, responseHandler) {
+        intentHandler.sendToPhone(intent, session, responseHandler);  
+    },
+
 	"AMAZON.HelpIntent": function (intent, session, response) {
         response.tell("Help");
     },

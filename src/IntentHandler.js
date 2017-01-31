@@ -1,5 +1,7 @@
 var PST_TIMEZONE_OFFSET = 8;
 
+var http = require('http');
+
 function IntentHandler() {
 
 }
@@ -63,6 +65,38 @@ IntentHandler.prototype.moreNewsIntentThree = function(intent, session, response
 IntentHandler.prototype.testQuestion = function(intent, session, responseHandler) {
 	console.log("test question handler");
 	responseHandler("Do you want to go home?", true, "I'm sorry what did you say?");
+}
+
+IntentHandler.prototype.sendToPhone = function(intent, session, responseHandler) {	
+	var get_options = {
+        host: "sheltered-scrubland-98082.herokuapp.com",
+        // port: "80",
+        path: ""
+    };
+
+	var get_req = http.request(get_options, function(res) {
+        var eg_results = "";
+
+        res.setEncoding('utf8');
+
+        res.on('data', function (chunk) {
+            eg_results += chunk;
+        });
+
+        res.on('end', function () {
+            if (res.statusCode === 200) {
+                responseHandler("Sent", false);
+            } else {
+                responseHandler("Failed to send", false);
+            }
+        });
+    });
+
+    get_req.on('error', function (e) {
+        responseHandler("Failed to send", false);
+    });
+
+    get_req.end();
 }
 
 // Helper Functions

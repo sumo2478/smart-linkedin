@@ -25,6 +25,9 @@ MoreNewsIntentThree yeah the third one
 MoreNewsIntentThree yes the third one
 MoreNewsIntentThree sure how about the third one
 
+SendToPhone send it to my phone
+SendToPhone send to my phone
+
 AMAZON.StopIntent no
 AMAZON.StopIntent no that is enough
 AMAZON.StopIntent no that's enough

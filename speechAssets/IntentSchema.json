@@ -19,6 +19,9 @@
 			"intent": "TestQuestion"
 		},	
 		{
+			"intent": "SendToPhone"
+		},			
+		{
 	      "intent": "AMAZON.HelpIntent"
 	    },
 	    {
