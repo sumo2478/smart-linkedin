@@ -10,6 +10,24 @@ var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
     process.env.USERPROFILE) + '/.credentials/';
 var TOKEN_PATH = TOKEN_DIR + 'calendar-nodejs-quickstart.json';
 
+function CalendarEvents() {
+
+}
+
+CalendarEvents.prototype.invoke = function() {
+  // Load client secrets from a local file.
+  fs.readFile('client_secret.json', function processClientSecrets(err, content) {
+    if (err) {
+      console.log('Error loading client secret file: ' + err);
+      return;
+    }
+    // Authorize a client with the loaded credentials, then call the
+    // Google Calendar API.
+    authorize(JSON.parse(content), listEvents);
+  });
+}
+
+/*
 // Load client secrets from a local file.
 fs.readFile('client_secret.json', function processClientSecrets(err, content) {
   if (err) {
@@ -20,6 +38,7 @@ fs.readFile('client_secret.json', function processClientSecrets(err, content) {
   // Google Calendar API.
   authorize(JSON.parse(content), listEvents);
 });
+*/
 
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
@@ -127,3 +146,5 @@ function listEvents(auth) {
     }
   });
 }
+
+module.exports = CalendarEvents;

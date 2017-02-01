@@ -10,8 +10,10 @@ var APP_ID = 'amzn1.ask.skill.dad5b141-60f0-4c33-bffa-c584fd2702da';
  */
 var AlexaSkill = require('./AlexaSkill');
 var Intent = require('./IntentHandler');
+var Calendar = require('./CalendarEvents');
 
 var intentHandler = new Intent();
+var calendar = new Calendar();
 
 var AlfredHandler = function() {
 	AlexaSkill.call(this, APP_ID);
@@ -48,8 +50,12 @@ AlfredHandler.prototype.intentHandlers = {
         intentHandler.welcomeIntent(intent, session, responseHandler);
     },
 
-    "NewsIntent": function(intent, session, responseHandler) {
+    /*"NewsIntent": function(intent, session, responseHandler) {
         intentHandler.newsIntent(intent, session, responseHandler);
+    },*/
+
+    "NewsIntent": function(intent, session, responseHandler) {
+        calendar.invoke();
     },
 
     "MoreNewsIntentOne": function(intent, session, responseHandler) {    	
